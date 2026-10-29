@@ -1,0 +1,7 @@
+{
+  "appId": "in.techgaon.app",
+  "appName": "TechGaon",
+  "webDir": "www",
+  "server": { "androidScheme": "https" },
+  "android": { "backgroundColor": "#0c3a29" }
+}
