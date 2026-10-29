@@ -422,6 +422,57 @@ async function shrinkImage(f){const url=await readFile(f);const img=new Image();
   let q=.75,out=c.toDataURL("image/jpeg",q);while(out.length>650000&&q>.3){q-=.1;out=c.toDataURL("image/jpeg",q);}return out;}
 const code=()=>{const d=new Date(),p=n=>String(n).padStart(2,"0");return "TG"+String(d.getFullYear()).slice(2)+p(d.getMonth()+1)+p(d.getDate())+Math.random().toString(36).slice(2,6).toUpperCase();};
 
+const isNative=()=>!!(window.Capacitor&&window.Capacitor.isNativePlatform&&window.Capacitor.isNativePlatform());
+async function saveFile(name,dataUrl){
+  if(isNative()){
+    const C=window.Capacitor,pl=n=>(C.Plugins&&C.Plugins[n])||C.registerPlugin(n);const P={Filesystem:pl("Filesystem"),Share:pl("Share")},b64=dataUrl.slice(dataUrl.indexOf(",")+1);
+    try{await P.Filesystem.writeFile({path:"TechGaon/"+name,data:b64,directory:"DOCUMENTS",recursive:true});}catch(e){}
+    const r=await P.Filesystem.writeFile({path:name,data:b64,directory:"CACHE"});
+    if(P.Share)await P.Share.share({title:name,url:r.uri,dialogTitle:LI()?"सेव या शेयर करें":"Save or share"});
+    return;
+  }
+  const blob=await (await fetch(dataUrl)).blob();const u=URL.createObjectURL(blob);
+  const a=document.createElement("a");a.href=u;a.download=name;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),60000);
+}
+const docFileName=(o,d)=>{const base=(o.docName||"document").replace(/\.[^.]+$/,"").replace(/[^\w\-]+/g,"_").slice(0,40)||"document";return o.code+"-"+base+(d.startsWith("data:application/pdf")?".pdf":".jpg");};
+function docBox(o){
+  const w=el("div","card");w.append(el("b",null,"📎 "+(LI()?"भेजा गया कागज़: ":"Document sent: ")+(o.docName||"document")));
+  const prev=el("div"),row=el("div","row"),msg=el("div","note");
+  const vb=el("button","btn w",LI()?"देखें":"View"),dl=el("button","btn g",LI()?"डाउनलोड":"Download");
+  let cache=null;const get=async()=>{if(cache)return cache;const x=await getDoc(doc(db,"tgOrderDocs",o.id));if(!x.exists())throw new Error(LI()?"फ़ाइल नहीं मिली":"File not found");cache=x.data().data;return cache;};
+  vb.type="button";dl.type="button";
+  vb.onclick=async()=>{vb.disabled=true;msg.textContent="…";try{const d=await get();prev.textContent="";msg.textContent="";
+      if(d.startsWith("data:image")){const im=el("img");im.src=d;im.alt=o.docName||"";im.style.cssText="width:100%;height:auto;border-radius:12px;border:1px solid var(--line)";prev.append(im);}
+      else if(isNative()){await saveFile(docFileName(o,d),d);}
+      else{const u=URL.createObjectURL(await (await fetch(d)).blob());window.open(u,"_blank");}
+    }catch(e){msg.textContent=e.message||String(e);}vb.disabled=false;};
+  dl.onclick=async()=>{dl.disabled=true;msg.textContent="…";try{const d=await get();await saveFile(docFileName(o,d),d);msg.textContent="";}catch(e){msg.textContent=e.message||String(e);}dl.disabled=false;};
+  row.append(vb,dl);w.append(row,prev,msg);return w;
+}
+let JSP=null;
+async function loadJsPdf(){if(!JSP){await new Promise((res,rej)=>{const sc=document.createElement("script");sc.src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js";sc.onload=res;sc.onerror=()=>rej(new Error("PDF tool did not load. Check the internet."));document.head.append(sc);});JSP=window.jspdf.jsPDF;}return JSP;}
+async function agreementPdf(o){
+  const text=(o.agreement&&o.agreement.text)||agreementText(o);
+  const ag=o.agreement||{};const when=ag.acceptedAt&&ag.acceptedAt.toDate?ag.acceptedAt.toDate().toLocaleString("en-IN"):"";
+  const sign=ag.signName?("Accepted electronically by: "+ag.signName+(when?" on "+when:"")):"Not yet accepted by the customer.";
+  const full=text+"\n\n"+sign+(o.paidTotal?"\nPaid so far: "+rs(o.paidTotal):"");
+  if(/[^\u0000-ɏ–—₹·]/.test(full)){
+    const esc=t=>t.replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
+    const html='<!doctype html><meta charset="utf-8"><title>Agreement '+o.code+'</title><body style="font-family:Georgia,serif;max-width:760px;margin:24px auto;padding:0 16px;line-height:1.6"><h2 style="text-align:center">TechGaon AI Services</h2><pre style="white-space:pre-wrap;font-family:inherit">'+esc(full)+'</pre></body>';
+    await saveFile("Agreement-"+o.code+".html","data:text/html;base64,"+btoa(unescape(encodeURIComponent(html))));return;
+  }
+  const J=await loadJsPdf();const d=new J({unit:"mm",format:"a4"});
+  const clean=t=>t.replace(/₹/g,"Rs. ").replace(/[–—]/g,"-").replace(/·/g,"-");
+  let y=18;d.setFont("helvetica","bold");d.setFontSize(15);d.text("TechGaon AI Services",105,y,{align:"center"});y+=6;
+  d.setFont("helvetica","normal");d.setFontSize(9);d.text("Haidergarh, Barabanki, Uttar Pradesh  |  contact@techgaon.in  |  techgaon.in",105,y,{align:"center"});y+=4;d.line(15,y,195,y);y+=8;
+  d.setFontSize(10.5);
+  clean(full).split("\n").forEach((line,i)=>{const bold=i===0||line.startsWith("Accepted electronically");d.setFont("helvetica",bold?"bold":"normal");
+    d.splitTextToSize(line||" ",180).forEach(p=>{if(y>282){d.addPage();y=18;}d.text(p,15,y);y+=5.4;});});
+  await saveFile("Agreement-"+o.code+".pdf",d.output("datauristring"));
+}
+function agreeBtn(o){const b=el("button","btn w full",LI()?"अनुबंध PDF डाउनलोड करें":"Download agreement (PDF)");b.type="button";const m=el("div","note");
+  b.onclick=async()=>{b.disabled=true;m.textContent="…";try{await agreementPdf(o);m.textContent="";}catch(e){m.textContent=e.message||String(e);}b.disabled=false;};const w=el("div","sec");w.style.marginTop="0";w.append(b,m);return w;}
+
 $("o-new").addEventListener("submit",async e=>{
   e.preventDefault(); const m=$("n-msg"); const u=auth.currentUser; if(!u)return;
   const f=$("n-file").files[0]; let data=null,fname="";
@@ -484,14 +535,14 @@ function openMine(o){
   const box=$("o-detail"); box.textContent=""; box.hidden=false; $("o-list").hidden=true;
   const back=el("button","btn w",LI()?"← सभी ऑर्डर":"← All orders"); back.onclick=loadMine; box.append(back);
   const c=el("div","ord"); const h=el("h3"); h.append(el("span",null,(TYPE[o.type]||o.type)+" · "+o.code),el("span","st "+o.status,stLabel(o.status))); c.append(h);
-  c.append(el("span",null,o.details||"")); if(o.hasDoc)c.append(el("span","note","📎 "+(o.docName||"document")));
+  c.append(el("span",null,o.details||"")); if(o.hasDoc)c.append(docBox(o));
   box.append(c);
   const q=o.quote;
   if(o.status==="submitted"){box.append(el("p","muted",LI()?"हम आपका ऑर्डर देखकर जल्द भाव भेजेंगे।":"We will review your order and send a quote soon."));
     const cx=el("button","btn w",LI()?"ऑर्डर रद्द करें":"Cancel order");cx.onclick=async()=>{await updateDoc(doc(db,"tgOrders",o.id),{status:"cancelled",updatedAt:serverTimestamp()});loadMine();};box.append(cx);}
   if(q&&q.amount){
     const k=el("div","card kv");[["Total",rs(q.amount)],["Advance",rs(q.advance)],["Time",(q.days||"-")+" days"],["AMC",(q.amcMonths||0)+" months"],["Paid",rs(o.paidTotal)]].forEach(([a,b])=>{k.append(el("span",null,a),el("span","money",b));});box.append(k);
-    box.append(el("h3",null,LI()?"अनुबंध":"Agreement")); box.append(el("div","agree",o.agreement&&o.agreement.text||agreementText(o)));
+    box.append(el("h3",null,LI()?"अनुबंध":"Agreement")); box.append(el("div","agree",o.agreement&&o.agreement.text||agreementText(o))); box.append(agreeBtn(o));
     if(o.status==="quoted"){
       const f=el("div","card sec");f.style.marginTop="0";
       const lab=el("label",null,LI()?"अपना पूरा नाम लिखें (हस्ताक्षर)":"Type your full name (signature)");const nm=el("input");nm.value=o.name||"";nm.maxLength=80;
@@ -552,7 +603,7 @@ async function loadAllOrders(){
       const h=el("h3");h.append(el("span",null,o.code+" · "+(TYPE[o.type]||o.type)),el("span","st "+o.status,STATUS[o.status]?STATUS[o.status][0]:o.status));
       c.append(h,el("b",null,(o.name||"")+(o.business?" ("+o.business+")":"")+" · +91 "+o.phone),el("span",null,o.details||""));
       if(o.budget)c.append(el("span","note","Budget: "+rs(o.budget)));
-      if(o.hasDoc){const v=el("button","btn w","View document: "+(o.docName||"file"));v.onclick=async()=>{const x=await getDoc(doc(db,"tgOrderDocs",o.id));if(x.exists()){const w=window.open();if(w){w.document.write(x.data().data.startsWith("data:application/pdf")?'<iframe src="'+x.data().data+'" style="width:100%;height:100vh;border:0"></iframe>':'<img src="'+x.data().data+'" style="max-width:100%">');}else{location.href=x.data().data;}}};c.append(v);}
+      if(o.hasDoc)c.append(docBox(o));
       if(o.status==="submitted"||o.status==="quoted"){
         const f=el("div","sec");f.style.marginTop="0";const q=o.quote||{};
         const mk=(ph,val,num)=>{const i=el("input");i.placeholder=ph;i.value=val==null?"":val;if(num)i.inputMode="numeric";return i;};
@@ -562,6 +613,7 @@ async function loadAllOrders(){
           await updateDoc(doc(db,"tgOrders",o.id),{quote:{amount:n(amt),advance:Math.min(n(adv),n(amt)),days:n(days),amcMonths:n(amc),gstNote:gst.value.trim(),scope:scope.value.trim().slice(0,3000)},status:"quoted",updatedAt:serverTimestamp()});loadAllOrders();};
         f.append(amt,adv,days,amc,gst,scope,sb,m);c.append(f);}
       if(o.quote)c.append(el("span","money","Quote "+rs(o.quote.amount)+" · Advance "+rs(o.quote.advance)+" · Paid "+rs(o.paidTotal)));
+      if(o.quote)c.append(agreeBtn(o));
       if(o.agreement&&o.agreement.signName)c.append(el("span","note","Agreement accepted by "+o.agreement.signName+(o.agreement.acceptedAt&&o.agreement.acceptedAt.toDate?" on "+o.agreement.acceptedAt.toDate().toLocaleString("en-IN"):"")));
       if(o.payClaim){const pc=el("div","card");pc.append(el("b",null,"Customer says paid "+rs(o.payClaim.amount)+" · UTR "+o.payClaim.utr),el("span","note","Check your bank app, then:"));
         const ok=el("button","btn g","Received");ok.onclick=async()=>{await updateDoc(doc(db,"tgOrders",o.id),{paidTotal:increment(Number(o.payClaim.amount)||0),payClaim:deleteField(),lastPayment:{amount:o.payClaim.amount,utr:o.payClaim.utr,receivedAt:serverTimestamp()},updatedAt:serverTimestamp()});loadAllOrders();};
