@@ -3,7 +3,8 @@ name: Build TechGaon app
 
 on:
   push:
-    branches: [main]
+    branches: [main, 'codex/android-app-refresh']
+  pull_request:
   workflow_dispatch:
 
 permissions:
@@ -53,13 +54,21 @@ jobs:
           cp android/app/build/outputs/apk/debug/app-debug.apk out/TechGaon.apk
           cp assets/icon-only.png out/icon.png
       - name: Publish release
+        if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
         uses: softprops/action-gh-release@v2
         with:
           tag_name: v1.0.${{ github.run_number }}
           name: TechGaon v1.0.${{ github.run_number }}
           files: out/*
+      - name: Save review APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: TechGaon-review-apk
+          path: out/TechGaon.apk
+          retention-days: 14
 
   web:
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

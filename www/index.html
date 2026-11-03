@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#0c3a29">
-<title>TechGaon</title>
+<title>TechGaon — गाँव की समझ, दिल का रिश्ता</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rozha+One&family=Mukta:wght@400;500;700;800&display=swap">
@@ -95,6 +95,7 @@ textarea{min-height:96px;resize:vertical}
 .legal a{color:var(--muted)}
 [hidden]{display:none!important}
 </style>
+<link rel="stylesheet" href="refresh.css">
 </head>
 <body>
 <header class="top">
@@ -110,11 +111,11 @@ textarea{min-height:96px;resize:vertical}
   </select>
 </header>
 
-<main>
+<div id="connection" role="status" hidden></div><main>
 
 <section id="home">
-  <div class="hero">
-    <img src="https://techgaon.in/images/ai-shop.webp" alt="" width="1200" height="897">
+  <div class="hero"><span class="hero-kicker" data-t="rooted">ROOTED IN OUR VILLAGES</span>
+    <img src="images/community.webp" alt="" width="1200" height="897">
     <h1 data-t="heroTitle">Technology made for <em>small towns</em>.</h1>
     <p data-t="heroLead">Apps, websites and AI tools for local shops, restaurants and businesses — in your language.</p>
     <div class="row">
@@ -123,12 +124,11 @@ textarea{min-height:96px;resize:vertical}
     </div>
   </div>
   <div class="facts">
-    <div><b>4</b><span data-t="f1">languages</span></div>
-    <div><b>5 km</b><span data-t="f2">local delivery</span></div>
-    <div><b>₹0</b><span data-t="f3">delivery charge</span></div>
-    <div><b>100%</b><span data-t="f4">pure veg</span></div>
-  </div>
-  <div class="sec">
+    <div><b>Apps</b><span data-t="factApps">For your work</span></div>
+    <div><b>Web</b><span data-t="factWeb">Your own identity</span></div>
+    <div><b>AI</b><span data-t="factAi">Save everyday effort</span></div>
+    <div><b>AMC</b><span data-t="factAmc">Stay supported</span></div>
+  </div>  <div class="sec">
     <span class="eyebrow" data-t="svcEyebrow">What we do</span>
     <h2 data-t="homeSvc">Your business, on every phone in town</h2>
     <div class="grid2">
@@ -137,8 +137,8 @@ textarea{min-height:96px;resize:vertical}
       <a class="card" href="#services" style="text-decoration:none"><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 3l2.2 5.3L20 9l-4.4 3.8L17 18l-5-3-5 3 1.4-5.2L4 9l5.8-.7z"/></svg></div><h3 data-t="s3t">AI tools</h3></a>
       <a class="card" href="#services" style="text-decoration:none"><div class="ic"><svg viewBox="0 0 24 24"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.5-.5-.5-2.5z"/></svg></div><h3 data-t="s4t">Maintenance & support</h3></a>
     </div>
-    <img class="photo" src="https://techgaon.in/images/ai-office.webp" alt="" width="1200" height="897" loading="lazy">
-    <p class="muted" data-t="about1">TechGaon AI Services is a technology firm from Haidergarh, Barabanki. We build for the shops and families of small towns.</p>
+    <img class="photo" src="images/office.webp" alt="" width="1200" height="897" loading="lazy">
+    <div class="local-banner"><span class="local-sun" aria-hidden="true">☀</span><p data-t="localWork">For the schools, shops and institutions of our villages and towns.</p></div><p class="muted" data-t="about1">TechGaon AI Services is a technology firm from Haidergarh, Barabanki. We build for the shops and families of small towns.</p>
   </div>
 </section>
 
@@ -176,11 +176,11 @@ textarea{min-height:96px;resize:vertical}
         <li data-t="p4">Track your order live</li>
       </ul>
       <a class="btn c full" href="https://techgaon.in/foodgaon/" target="_blank" rel="noopener" data-t="order">Order food now</a>
-      <a class="btn w full" href="https://github.com/techgaon/foodgaon/releases/latest/download/FoodGaon.apk" target="_blank" rel="noopener" data-t="apk">Download FoodGaon app</a>
+      <a class="btn w full" href="https://github.com/techgaon/foodgaon/releases/download/v1.0.14/FoodGaon-v1.0.14-install.apk" target="_blank" rel="noopener" data-t="apk">Download FoodGaon app</a>
       <button class="btn g full ask" data-type="restaurant" data-t="join" style="color:#fff">List your restaurant</button>
     </div>
-    <img class="photo" src="https://techgaon.in/images/ai-restaurant.webp" alt="" width="1200" height="897" loading="lazy">
-    <img class="photo" src="https://techgaon.in/images/ai-rider.webp" alt="" width="1200" height="897" loading="lazy">
+    <img class="photo" src="images/restaurant.webp" alt="" width="1200" height="897" loading="lazy">
+    <img class="photo" src="images/rider.webp" alt="" width="1200" height="897" loading="lazy">
   </div>
 </section>
 
@@ -214,12 +214,12 @@ textarea{min-height:96px;resize:vertical}
       <span data-t="kPhone">Phone</span><span>+91 91292 03268</span>
       <span data-t="kMail">Email</span><span>contact@techgaon.in</span>
       <span data-t="kAddr">Address</span><span data-t="addr">Pandey Home, Rampur, PO &amp; PS Subeha, Haidergarh, District Barabanki, Uttar Pradesh – 225125</span>
-      <span>Udyam</span><span>UDYAM-UP-14-0065110</span>
+      <span>GSTIN</span><span>09DBSPP3533H1Z5</span><span>Udyam</span><span>UDYAM-UP-14-0065110</span>
     </div>
     <div class="legal">
-      <a href="https://techgaon.in/" target="_blank" rel="noopener">techgaon.in</a>
-      <a href="https://techgaon.in/#privacy-policy" target="_blank" rel="noopener">Privacy Policy</a>
-      <a href="https://techgaon.in/#terms" target="_blank" rel="noopener">Terms</a>
+      <a href="#admin" data-t="adminAccess">Admin login</a><a href="https://techgaon.in/" target="_blank" rel="noopener">techgaon.in</a>
+      <a href="https://techgaon.in/privacy-policy/" target="_blank" rel="noopener">Privacy Policy</a>
+      <a href="https://techgaon.in/terms/" target="_blank" rel="noopener">Terms</a>
     </div>
   </div>
 </section>
@@ -267,15 +267,15 @@ textarea{min-height:96px;resize:vertical}
   <div class="sec">
     <span class="eyebrow">Admin</span>
     <h2 data-t="adTitle">Enquiries</h2>
-    <form id="adlogin" class="sec" style="margin-top:0">
-      <div class="field"><label for="pin" data-t="adPin">Admin PIN</label><input id="pin" type="password" inputmode="numeric" autocomplete="off" required></div>
+    <p class="muted" data-t="adminLead">Your enquiries, projects and payments in one place.</p><form id="adlogin" class="sec" style="margin-top:0">
+      <div class="field"><label for="admin-user" data-t="adminUser">Email or mobile number</label><input id="admin-user" autocomplete="username" value="contact@techgaon.in" required></div><div class="field"><label for="pin" data-t="adPin">Admin PIN</label><input id="pin" type="password" inputmode="numeric" autocomplete="current-password" pattern="[0-9]{4}" maxlength="4" minlength="4" required></div>
       <button class="btn g full" type="submit" data-t="adIn">Open</button>
-      <div id="adstatus" class="note"></div>
+      <div id="adstatus" class="note" role="status" aria-live="polite"></div>
     </form>
     <div id="adlist" class="sec" hidden style="margin-top:0">
       <div class="row"><button class="btn w" id="adrefresh" data-t="adRefresh">Refresh</button><button class="btn w" id="adout" data-t="adOut">Log out</button></div>
       <div class="seg" id="adseg"><button type="button" data-v="enq" class="on" data-t="adTitle">Enquiries</button><button type="button" data-v="ord" data-t="adOrders">Orders</button><button type="button" data-v="set" data-t="adSet">Payment settings</button></div>
-      <div id="items" class="sec" style="margin-top:0"></div>
+      <div id="admin-tools"><div id="admin-summary" class="summary" aria-live="polite"></div><div class="admin-filters"><input id="admin-search" type="search" data-ph="searchHint" placeholder="Search name, mobile, reference or work" aria-label="Search enquiries and orders"><select id="admin-filter" aria-label="Filter by status"></select></div><p id="admin-count" class="note" role="status"></p></div><div id="items" class="sec" style="margin-top:0"></div>
       <div id="aorders" class="sec" hidden style="margin-top:0"></div>
       <form id="aset" class="card sec" hidden style="margin-top:0">
         <div class="field"><label for="s-upi" data-t="adPay">UPI ID for payments</label><input id="s-upi" placeholder="name@bank" maxlength="60"></div>
@@ -296,6 +296,7 @@ textarea{min-height:96px;resize:vertical}
   <a href="#contact" data-tab="contact"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><span data-t="nCt">Contact</span></a>
 </nav>
 
+<script src="copy.js"></script>
 <script>
 const T={
  heroTitle:["Technology made for <em>small towns</em>.","<em>छोटे शहरों</em> के लिए बनी तकनीक।","<em>छोटे कस्बन</em> खातिर बनी तकनीक।","<em>छोट शहरन</em> खातिर बनल तकनीक।"],
@@ -349,12 +350,13 @@ const T={
  adPay:["UPI ID for payments","भुगतान के लिए UPI ID","भुगतान खातिर UPI ID","भुगतान खातिर UPI ID"],adUpiName:["Name shown in UPI","UPI में दिखने वाला नाम","UPI मा देखाए वाला नाम","UPI में देखाए वाला नाम"],adSave:["Save","सेव करें","सेव करौ","सेव करीं"],
  adTitle:["Enquiries","पूछताछ","पूछताछ","पूछताछ"],adPin:["Admin PIN","एडमिन PIN","एडमिन PIN","एडमिन PIN"],adIn:["Open","खोलें","खोलौ","खोलीं"],adRefresh:["Refresh","ताज़ा करें","ताज़ा करौ","ताज़ा करीं"],adOut:["Log out","लॉग आउट","लॉग आउट","लॉग आउट"]
 };
+Object.assign(T,window.TG_COPY);
 const LANGS=["en","hi","aw","bh"]; let L=0;
-function setLang(code){L=Math.max(0,LANGS.indexOf(code));document.documentElement.lang=L?"hi":"en";document.querySelectorAll("[data-t]").forEach(el=>{const r=T[el.dataset.t];if(r)el.innerHTML=r[L];});document.getElementById("lang").value=LANGS[L];try{localStorage.setItem("tg-lang",LANGS[L])}catch(e){}}
+function setLang(code){L=Math.max(0,LANGS.indexOf(code));document.documentElement.lang=["en","hi","awa","bho"][L];document.querySelectorAll("[data-t]").forEach(el=>{const r=T[el.dataset.t];if(r)el.innerHTML=r[L];});document.querySelectorAll("[data-ph]").forEach(e=>{e.placeholder=T[e.dataset.ph]?.[L]||e.placeholder});document.getElementById("lang").value=LANGS[L];dispatchEvent(new Event("tg-language"));try{localStorage.setItem("tg-lang",LANGS[L])}catch(e){}}
 document.getElementById("lang").addEventListener("change",e=>setLang(e.target.value));
 
 const TABS=["home","services","orders","foodgaon","contact","admin"];
-function show(){const h=location.hash.slice(1);const t=TABS.includes(h)?h:"home";TABS.forEach(id=>document.getElementById(id).hidden=id!==t);document.querySelectorAll(".nav a").forEach(a=>a.classList.toggle("on",a.dataset.tab===t));window.scrollTo(0,0);}
+function show(){const h=location.hash.slice(1);const t=TABS.includes(h)?h:"home";TABS.forEach(id=>document.getElementById(id).hidden=id!==t);document.querySelectorAll(".nav a").forEach(a=>a.classList.toggle("on",a.dataset.tab===t));document.querySelectorAll(".nav a").forEach(a=>a.toggleAttribute("aria-current",a.dataset.tab===t));document.activeElement?.blur();window.scrollTo(0,0);}
 addEventListener("hashchange",show);
 
 document.querySelectorAll("button.ask").forEach(b=>b.addEventListener("click",()=>{document.getElementById("f-type").value=b.dataset.type;location.hash="contact";}));
@@ -378,10 +380,11 @@ const rs=n=>"₹"+Number(n||0).toLocaleString("en-IN");
 const ADMIN="9129203268", DOMAIN="login.foodgaon.app";
 const emailOf=p=>`91${p}@${DOMAIN}`;
 const phoneOf=u=>{const m=/^91(\d{10})@login\.foodgaon\.app$/.exec(u&&u.email||"");return m?m[1]:"";};
-const FIRM={name:"TechGaon AI Services",owner:"Suraj Bhan Pandey",addr:"Pandey Home, Rampur, PO & PS Subeha, Haidergarh, District Barabanki, Uttar Pradesh – 225125",udyam:"UDYAM-UP-14-0065110",phone:"+91 91292 03268",email:"contact@techgaon.in"};
+const FIRM={name:"TechGaon AI Services",owner:"Suraj Bhan Pandey",addr:"Pandey Home, Rampur, PO & PS Subeha, Haidergarh, District Barabanki, Uttar Pradesh – 225125",udyam:"UDYAM-UP-14-0065110",gst:"09DBSPP3533H1Z5",phone:"+91 91292 03268",email:"contact@techgaon.in"};
 const TYPE={app:"Mobile app",website:"Website",amc:"AMC (annual maintenance)",ai:"AI tool",other:"Other work"};
-const STATUS={submitted:["Sent","भेजा गया"],quoted:["Quote ready","भाव तैयार"],accepted:["Agreement signed","अनुबंध स्वीकार"],inprogress:["Work in progress","काम चालू"],delivered:["Completed","पूरा"],cancelled:["Cancelled","रद्द"]};
-const stLabel=s=>{const v=STATUS[s]||[s,s];return LI()?v[1]:v[0];};
+const STATUS={submitted:["Request sent","अनुरोध भेजा गया","बात भेजी गई","निवेदन भेजाइल"],quoted:["Quote ready","Quotation तैयार","दाम तैयार अहै","दाम तैयार बा"],accepted:["Agreement accepted","अनुबंध स्वीकार","समझौता मंजूर","समझौता मंजूर"],inprogress:["Work in progress","काम चल रहा है","काम चलत अहै","काम चलत बा"],delivered:["Completed","पूरा हुआ","पूरा भवा","पूरा भइल"],cancelled:["Cancelled","रद्द","रद्द","रद्द"]};
+const tr=(...v)=>v[LI()]||v[0];
+const stLabel=s=>{const v=STATUS[s]||[s,s,s,s];return v[LI()];};
 let cfg={upiId:"",upiName:"TechGaon AI Services"};
 async function loadCfg(){try{const d=await getDoc(doc(db,"tgConfig","app"));if(d.exists())cfg={...cfg,...d.data()};}catch(e){}}
 loadCfg();
@@ -403,12 +406,12 @@ let otpStep=false;
 $("o-go").addEventListener("click",async()=>{
   const p=$("o-phone").value.replace(/\D/g,""); const m=$("o-lmsg");
   if(!/^[6-9]\d{9}$/.test(p)){m.textContent=MSG.bad[LI()];return;}
-  if(p===ADMIN){m.textContent="Admin: tap the logo 5 times";return;}
+  if(p===ADMIN){location.hash="admin";$("admin-user").value=p;$("pin").focus();return;}
   if(!otpStep){otpStep=true;$("o-otpbox").hidden=false;$("o-go").textContent=LI()?"लॉग इन करें":"Log in";$("o-otp").focus();return;}
   if($("o-otp").value.trim()!=="1234"){m.textContent=LI()?"OTP ग़लत है":"Wrong OTP";return;}
   m.textContent="…"; const em=emailOf(p), pw=`FG-${p}-tg2026`;
   try{await signInWithEmailAndPassword(auth,em,pw);}catch(err){
-    try{await createUserWithEmailAndPassword(auth,em,pw);}catch(e2){m.textContent=(LI()?"लॉग इन नहीं हुआ: ":"Login failed: ")+(e2.code||e2.message);return;}}
+    if(!["auth/user-not-found","auth/invalid-credential"].includes(err.code)){m.textContent=MSG.err[LI()];return;}try{await createUserWithEmailAndPassword(auth,em,pw);}catch(e2){m.textContent=(LI()?"लॉग इन नहीं हुआ: ":"Login failed: ")+(e2.code||e2.message);return;}}
   m.textContent=""; otpStep=false; $("o-otpbox").hidden=true; $("o-otp").value="";
 });
 $("o-out").addEventListener("click",()=>signOut(auth));
@@ -498,7 +501,7 @@ function agreementText(o){
 "SERVICE AGREEMENT",
 "Order No.: "+o.code,
 "",
-"Service provider: "+FIRM.name+" (Proprietor: "+FIRM.owner+"), "+FIRM.addr+". Udyam: "+FIRM.udyam+". Phone: "+FIRM.phone+", Email: "+FIRM.email+".",
+"Service provider: "+FIRM.name+" (Proprietor: "+FIRM.owner+"), "+FIRM.addr+". GSTIN: "+FIRM.gst+". Udyam: "+FIRM.udyam+". Phone: "+FIRM.phone+", Email: "+FIRM.email+".",
 "Customer: "+(o.name||"")+(o.business?" ("+o.business+")":"")+", Mobile: +91 "+o.phone+".",
 "",
 "1. Work: "+(TYPE[o.type]||o.type)+".",
@@ -533,6 +536,8 @@ async function loadMine(){
 function upiLink(amount,o){return "upi://pay?pa="+encodeURIComponent(cfg.upiId)+"&pn="+encodeURIComponent(cfg.upiName||FIRM.name)+"&am="+Number(amount).toFixed(2)+"&cu=INR&tn="+encodeURIComponent("Order "+o.code);}
 function openMine(o){
   const box=$("o-detail"); box.textContent=""; box.hidden=false; $("o-list").hidden=true;
+  const stages=["submitted","quoted","accepted","inprogress","delivered"],current=stages.indexOf(o.status);
+  if(current>=0){const progress=el("ol","project-progress");progress.setAttribute("aria-label",tr("Project progress","Project की प्रगति","काम कै प्रगति","काम के प्रगति"));stages.forEach((stage,i)=>{const step=el("li",i<=current?"reached":"",stLabel(stage));if(i===current)step.setAttribute("aria-current","step");progress.append(step);});box.append(progress);}
   const back=el("button","btn w",LI()?"← सभी ऑर्डर":"← All orders"); back.onclick=loadMine; box.append(back);
   const c=el("div","ord"); const h=el("h3"); h.append(el("span",null,(TYPE[o.type]||o.type)+" · "+o.code),el("span","st "+o.status,stLabel(o.status))); c.append(h);
   c.append(el("span",null,o.details||"")); if(o.hasDoc)c.append(docBox(o));
@@ -572,35 +577,36 @@ function openMine(o){
 
 
 $("adlogin").addEventListener("submit",async e=>{
-  e.preventDefault(); $("adstatus").textContent="…";
+  e.preventDefault();if(!$("adlogin").reportValidity())return;
+  const username=$("admin-user").value.trim().toLowerCase();
+  if(!["contact@techgaon.in",ADMIN,"+91"+ADMIN].includes(username)){$("adstatus").textContent=tr("Check your username.","Username जाँचें।","आपन Username देखौ।","आपन Username देखीं।");return;}
+  const submit=$("adlogin").querySelector("button[type=submit]");submit.disabled=true;$("adstatus").textContent="…";
   try{await signInWithEmailAndPassword(auth,emailOf(ADMIN),`FG-${ADMIN}-${$("pin").value}-pin`);$("pin").value="";$("adstatus").textContent="";}
-  catch(err){$("adstatus").textContent="Wrong PIN";}
+  catch(err){$("adstatus").textContent=tr("Could not log in. Check your PIN and connection.","Login नहीं हुआ। PIN और इंटरनेट जाँचें।","Login नाहीं भवा। PIN अउर नेट देखौ।","Login ना भइल। PIN आ नेट देखीं।");}finally{submit.disabled=false;}
 });
 $("adout").addEventListener("click",()=>signOut(auth));
-let adView="enq";
-document.querySelectorAll("#adseg button").forEach(b=>b.addEventListener("click",()=>{adView=b.dataset.v;document.querySelectorAll("#adseg button").forEach(x=>x.classList.toggle("on",x===b));adShow();}));
+let adView="enq",enqRows=[],orderRows=[];
+const statusName=s=>s==="new"?tr("New","नई","नई","नया"):s==="done"?tr("Handled","पूरी हुई","पूरी भई","पूरा भइल"):stLabel(s);
+function filterRows(rows){const q=$("admin-search").value.trim().toLowerCase(),status=$("admin-filter").value;const shown=rows.filter(r=>(!status||r.status===status)&&(!q||[r.name,r.phone,r.code,r.id,r.business,r.details,r.message].join(" ").toLowerCase().includes(q)));$("admin-count").textContent=shown.length+" / "+rows.length+" · "+tr("loaded records","लोड हुए रिकॉर्ड","आए रिकॉर्ड","आइल रिकॉर्ड");return shown;}
+function setupFilters(){const select=$("admin-filter");select.replaceChildren();const all=el("option",null,tr("All statuses","सभी स्थितियाँ","सब स्थिति","सब स्थिति"));all.value="";select.append(all);(adView==="enq"?["new","done"]:Object.keys(STATUS)).forEach(s=>{const o=el("option",null,statusName(s));o.value=s;select.append(o);});}
+function summary(rows){const box=$("admin-summary");box.replaceChildren();const groups=adView==="enq"?[[tr("Loaded","लोड हुई","आई","आइल"),rows.length],[statusName("new"),rows.filter(x=>x.status==="new").length],[statusName("done"),rows.filter(x=>x.status==="done").length]]:[[tr("Loaded","लोड हुए","आए","आइल"),rows.length],[tr("Active","चालू काम","चलत काम","चलत काम"),rows.filter(x=>!["delivered","cancelled"].includes(x.status)).length],[tr("To check","भुगतान जाँच","भुगतान जाँच","भुगतान जाँच"),rows.filter(x=>x.payClaim).length]];groups.forEach(([label,n])=>{const b=el("div");b.append(el("b",null,n),el("span",null,label));box.append(b);});}
+$("admin-search").addEventListener("input",()=>adView==="enq"?renderEnq():renderOrders());$("admin-filter").addEventListener("change",()=>adView==="enq"?renderEnq():renderOrders());
+addEventListener("tg-language",()=>{if(auth.currentUser&&phoneOf(auth.currentUser)===ADMIN){setupFilters();adView==="enq"?renderEnq():renderOrders();}});
+
+document.querySelectorAll("#adseg button").forEach(b=>b.addEventListener("click",()=>{if(adView===b.dataset.v)return;adView=b.dataset.v;$("admin-search").value="";setupFilters();document.querySelectorAll("#adseg button").forEach(x=>x.classList.toggle("on",x===b));adShow();}));
 $("adrefresh").addEventListener("click",adShow);
-function adShow(){$("items").hidden=adView!=="enq";$("aorders").hidden=adView!=="ord";$("aset").hidden=adView!=="set";if(adView==="enq")loadEnq();if(adView==="ord")loadAllOrders();if(adView==="set"){$("s-upi").value=cfg.upiId||"";$("s-upiname").value=cfg.upiName||"";}}
+function adShow(){$("admin-tools").hidden=adView==="set";if(!$("admin-filter").options.length)setupFilters();$("items").hidden=adView!=="enq";$("aorders").hidden=adView!=="ord";$("aset").hidden=adView!=="set";if(adView==="enq")loadEnq();if(adView==="ord")loadAllOrders();if(adView==="set"){$("s-upi").value=cfg.upiId||"";$("s-upiname").value=cfg.upiName||"";}}
 $("aset").addEventListener("submit",async e=>{e.preventDefault();try{await setDoc(doc(db,"tgConfig","app"),{upiId:$("s-upi").value.trim(),upiName:$("s-upiname").value.trim()||FIRM.name},{merge:true});await loadCfg();$("s-msg").textContent="Saved";}catch(err){$("s-msg").textContent=err.code||err.message;}});
 const ETYPES={app:"Mobile app",website:"Website",ai:"AI tool",support:"Support",restaurant:"Restaurant",other:"Other"};
-async function loadEnq(){
-  const box=$("items"); box.textContent="…";
-  try{const snap=await getDocs(query(collection(db,"enquiries"),orderBy("createdAt","desc"),limit(100)));box.textContent="";
-    if(snap.empty){box.textContent="No enquiries yet.";return;}
-    snap.forEach(d=>{const v=d.data();const c=el("div","enq"+(v.status==="done"?" done":""));
-      const when=v.createdAt&&v.createdAt.toDate?v.createdAt.toDate().toLocaleString("en-IN",{dateStyle:"medium",timeStyle:"short"}):"";
-      c.append(el("b",null,(v.name||"-")+" · "+(v.phone||"")),el("span","pill",ETYPES[v.type]||v.type||""),el("span",null,v.message||""),el("span","note",when));
-      const row=el("div","row");const call=el("a","btn w","Call");call.href="tel:+91"+v.phone;const wa=el("a","btn wa","WhatsApp");wa.href="https://wa.me/91"+v.phone;wa.target="_blank";
-      const dn=el("button","btn g",v.status==="done"?"Mark new":"Mark done");dn.onclick=async()=>{await updateDoc(doc(db,"enquiries",d.id),{status:v.status==="done"?"new":"done"});loadEnq();};
-      row.append(call,wa,dn);c.append(row);box.append(c);});
-  }catch(err){box.textContent="Could not load: "+(err.code||err.message);}
-}
+async function loadEnq(){const box=$("items");box.textContent="…";try{const snap=await getDocs(query(collection(db,"enquiries"),orderBy("createdAt","desc"),limit(100)));enqRows=snap.docs.map(d=>({id:d.id,...d.data()}));renderEnq();}catch(err){box.textContent=MSG.err[LI()];}}
+function renderEnq(){const box=$("items");box.replaceChildren();summary(enqRows);const shown=filterRows(enqRows);if(!shown.length)box.append(el("div","empty",tr("No matching enquiries. Try another search or refresh.","कोई enquiry नहीं मिली। खोज बदलें या Refresh करें।","कउनो बात नाहीं मिली। खोज बदलौ या Refresh करौ।","कवनो बात ना मिलल। खोज बदलीं भा Refresh करीं।")));
+for(const v of shown){const c=el("article","enq"+(v.status==="done"?" done":""));c.append(el("span","pill",statusName(v.status)),el("h3",null,v.name||"—"),el("span","note",ETYPES[v.type]||v.type||""),el("p",null,v.message||""));if(v.createdAt?.toDate)c.append(el("span","note",v.createdAt.toDate().toLocaleString("en-IN",{dateStyle:"medium",timeStyle:"short"})));c.append(el("span","note","Ref: "+v.id));const row=el("div","row");for(const [label,href] of [[v.phone,"tel:+91"+v.phone],["WhatsApp","https://wa.me/91"+v.phone]]){const a=el("a","btn w",label);a.href=href;a.rel="noopener";row.append(a);}const done=el("button","btn g",v.status==="done"?tr("Reopen","फिर खोलें","फिर खोलौ","फेर खोलीं"):tr("Mark handled","पूरी हुई","पूरी भई","पूरा भइल"));done.onclick=async()=>{done.disabled=true;try{await updateDoc(doc(db,"enquiries",v.id),{status:v.status==="done"?"new":"done"});await loadEnq();}catch{c.append(el("p","err",MSG.err[LI()]));}finally{done.disabled=false;}};row.append(done);c.append(row);box.append(c);}}
 async function loadAllOrders(){
   const box=$("aorders"); box.textContent="…";
-  try{const snap=await getDocs(query(collection(db,"tgOrders"),orderBy("createdAt","desc"),limit(100)));box.textContent="";
-    if(snap.empty){box.textContent="No orders yet.";return;}
-    snap.forEach(d=>{const o={id:d.id,...d.data()};const c=el("div","ord");
-      const h=el("h3");h.append(el("span",null,o.code+" · "+(TYPE[o.type]||o.type)),el("span","st "+o.status,STATUS[o.status]?STATUS[o.status][0]:o.status));
+  try{const snap=await getDocs(query(collection(db,"tgOrders"),orderBy("createdAt","desc"),limit(100)));orderRows=snap.docs.map(d=>({id:d.id,...d.data()}));renderOrders();}catch(err){box.textContent=MSG.err[LI()];}}
+function renderOrders(){const box=$("aorders");box.replaceChildren();summary(orderRows);const shown=filterRows(orderRows);if(!shown.length)box.append(el("div","empty",tr("No matching projects. Try another search or refresh.","कोई project नहीं मिला। खोज बदलें या Refresh करें।","कउनो काम नाहीं मिला। खोज बदलौ या Refresh करौ।","कवनो काम ना मिलल। खोज बदलीं भा Refresh करीं।")));
+    shown.forEach(o=>{const c=el("div","ord");
+      const h=el("h3");h.append(el("span",null,o.code+" · "+(TYPE[o.type]||o.type)),el("span","st "+o.status,stLabel(o.status)));
       c.append(h,el("b",null,(o.name||"")+(o.business?" ("+o.business+")":"")+" · +91 "+o.phone),el("span",null,o.details||""));
       if(o.budget)c.append(el("span","note","Budget: "+rs(o.budget)));
       if(o.hasDoc)c.append(docBox(o));
@@ -609,8 +615,8 @@ async function loadAllOrders(){
         const mk=(ph,val,num)=>{const i=el("input");i.placeholder=ph;i.value=val==null?"":val;if(num)i.inputMode="numeric";return i;};
         const amt=mk("Total amount ₹",q.amount,1),adv=mk("Advance ₹",q.advance,1),days=mk("Delivery days",q.days,1),amc=mk("AMC months (0 = none)",q.amcMonths,1),gst=mk("Note e.g. GST extra if applicable",q.gstNote),scope=el("textarea");scope.placeholder="Scope of work (what exactly will be delivered)";scope.value=q.scope||o.details||"";
         const sb=el("button","btn c full",o.status==="quoted"?"Update quote":"Send quote");const m=el("div","note");
-        sb.onclick=async()=>{const n=x=>Number(String(x.value).replace(/\D/g,""))||0;if(!n(amt)){m.textContent="Enter amount";return;}
-          await updateDoc(doc(db,"tgOrders",o.id),{quote:{amount:n(amt),advance:Math.min(n(adv),n(amt)),days:n(days),amcMonths:n(amc),gstNote:gst.value.trim(),scope:scope.value.trim().slice(0,3000)},status:"quoted",updatedAt:serverTimestamp()});loadAllOrders();};
+        sb.onclick=async()=>{const n=x=>String(x.value).trim()===""?0:Number(String(x.value).trim());if(![n(amt),n(adv),n(days),n(amc)].every(Number.isFinite)||n(amt)<=0||n(adv)<0||n(adv)>n(amt)||!Number.isInteger(n(days))||n(days)<1||!Number.isInteger(n(amc))||n(amc)<0||!scope.value.trim()){m.textContent=tr("Check total, advance, delivery days and scope.","राशि, advance, समय और काम का विवरण जाँचें।","रकम, advance, बखत अउर काम देखौ।","रकम, advance, बखत आ काम देखीं।");return;}sb.disabled=true;try{
+          await updateDoc(doc(db,"tgOrders",o.id),{quote:{amount:n(amt),advance:Math.min(n(adv),n(amt)),days:n(days),amcMonths:n(amc),gstNote:gst.value.trim(),scope:scope.value.trim().slice(0,3000)},status:"quoted",updatedAt:serverTimestamp()});await loadAllOrders();}catch{m.textContent=MSG.err[LI()];}finally{sb.disabled=false;}};
         f.append(amt,adv,days,amc,gst,scope,sb,m);c.append(f);}
       if(o.quote)c.append(el("span","money","Quote "+rs(o.quote.amount)+" · Advance "+rs(o.quote.advance)+" · Paid "+rs(o.paidTotal)));
       if(o.quote)c.append(agreeBtn(o));
@@ -620,19 +626,19 @@ async function loadAllOrders(){
         const no=el("button","btn w","Not received");no.onclick=async()=>{await updateDoc(doc(db,"tgOrders",o.id),{payClaim:deleteField(),updatedAt:serverTimestamp()});loadAllOrders();};
         const r=el("div","row");r.append(ok,no);pc.append(r);c.append(pc);}
       const r2=el("div","row");
-      [["inprogress","Work started"],["delivered","Completed"],["cancelled","Cancel"]].forEach(([s,l])=>{if(o.status!==s&&o.status!=="submitted"){const b=el("button","btn w",l);b.onclick=async()=>{await updateDoc(doc(db,"tgOrders",o.id),{status:s,updatedAt:serverTimestamp()});loadAllOrders();};r2.append(b);}});
+      [["inprogress","Work started"],["delivered","Completed"],["cancelled","Cancel"]].forEach(([s,l])=>{if(o.status!==s&&o.status!=="submitted"&&o.status!=="cancelled"&&o.status!=="delivered"){const b=el("button","btn w",l);b.onclick=async()=>{if(s==="cancelled"&&!confirm(tr("Cancel this project?","यह project रद्द करें?","ई काम रद्द करी?","ई काम रद्द करीं?")))return;b.disabled=true;try{await updateDoc(doc(db,"tgOrders",o.id),{status:s,updatedAt:serverTimestamp()});await loadAllOrders();}catch{c.append(el("p","err",MSG.err[LI()]));}finally{b.disabled=false;}};r2.append(b);}});
       c.append(r2);box.append(c);});
-  }catch(err){box.textContent="Could not load: "+(err.code||err.message);}
 }
 
 
 onAuthStateChanged(auth,u=>{
-  const ph=phoneOf(u), isAdmin=ph===ADMIN;
+  const ph=phoneOf(u), isAdmin=ph===ADMIN;if(!isAdmin){enqRows=[];orderRows=[];$("items").replaceChildren();$("aorders").replaceChildren();$("admin-summary").replaceChildren();}
   $("adlogin").hidden=isAdmin; $("adlist").hidden=!isAdmin; if(isAdmin)adShow();
   const cust=!!u&&!!ph&&!isAdmin;
   $("o-login").hidden=cust; $("o-main").hidden=!cust;
   if(cust){$("o-who").textContent="+91 "+ph;loadMine();}
 });
 </script>
+<script src="refresh.js"></script>
 </body>
 </html>
