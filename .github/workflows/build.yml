@@ -58,21 +58,3 @@ jobs:
           tag_name: v1.0.${{ github.run_number }}
           name: TechGaon v1.0.${{ github.run_number }}
           files: out/*
-
-  web:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: www
-
-  pages:
-    needs: web
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deploy.outputs.page_url }}
-    steps:
-      - id: deploy
-        uses: actions/deploy-pages@v4
